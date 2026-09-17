@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karishma Travels & Tours — Travel Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#FBF8F3;
+  --ink:#1A1208;
+  --ink-soft:#4A3F2F;
+  --gold:#C9953A;
+  --gold-light:#F0D99A;
+  --gold-pale:#FDF5E0;
+  --mountain:#2C3E50;
+  --mountain-light:#5D7A8A;
+  --red:#B5352A;
+  --white:#FFFFFF;
+  --border:#E8DFC8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(26,18,8,0.96);backdrop-filter:blur(8px);padding:0 3rem}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--gold-light);letter-spacing:.04em;text-decoration:none;white-space:nowrap}
+.logo span{color:var(--white)}
+.nav-links{display:flex;gap:0;list-style:none;align-items:stretch}
+.nav-links>li{position:relative;display:flex;align-items:center}
+.nav-links>li>a,.nav-links>li>span{color:rgba(255,255,255,.75);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;padding:.25rem .85rem;cursor:pointer;display:flex;align-items:center;gap:.3rem;white-space:nowrap;height:64px}
+.nav-links>li>a:hover,.nav-links>li>span:hover,.nav-links>li.open>span{color:var(--gold-light)}
+.nav-links>li>span::after{content:'▾';font-size:.6rem;opacity:.6}
+.nav-links>li.active-page>a{color:var(--gold-light)}
+/* Dropdown */
+.dropdown{display:none;position:absolute;top:64px;left:0;background:#1A1208;border:1px solid rgba(201,149,58,.25);border-top:2px solid var(--gold);border-radius:0 0 8px 8px;min-width:200px;padding:.5rem 0;box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.nav-links>li.open .dropdown,.nav-links>li:hover .dropdown{display:block}
+.dropdown a{display:block;padding:.6rem 1.1rem;color:rgba(255,255,255,.7);text-decoration:none;font-size:.82rem;font-weight:400;transition:all .15s;white-space:nowrap;border-left:2px solid transparent}
+.dropdown a:hover{color:var(--gold-light);background:rgba(201,149,58,.08);border-left-color:var(--gold)}
+.dropdown-divider{height:1px;background:rgba(255,255,255,.08);margin:.35rem 0}
+.dropdown-label{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:.5rem 1.1rem .2rem;font-weight:600}
+.nav-cta{background:var(--gold);color:var(--ink);padding:.5rem 1.1rem;border-radius:4px;font-size:.78rem;font-weight:600;text-decoration:none;letter-spacing:.04em;text-transform:uppercase;transition:background .2s;white-space:nowrap;margin-left:.5rem}
+.nav-cta:hover{background:var(--gold-light)}
+/* Hamburger */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:.5rem}
+.nav-hamburger span{display:block;width:22px;height:2px;background:rgba(255,255,255,.75);transition:all .2s}
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#1A1208;padding:1rem 1.5rem 1.5rem;border-top:1px solid rgba(201,149,58,.2);z-index:999}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:.65rem 0;color:rgba(255,255,255,.75);text-decoration:none;font-size:.9rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.mobile-menu a:hover{color:var(--gold-light)}
+.mobile-section{font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:.9rem 0 .3rem;font-weight:600}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(180deg,#0D1B2A 0%,#1E2D3A 60%,#2C3E50 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:6rem 2rem 4rem}
+.hero-mountains{position:absolute;bottom:0;left:0;right:0;height:40%}
+.hero-tagline{font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-light);margin-bottom:1.5rem;font-weight:500}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:700;color:var(--white);line-height:1.05;margin-bottom:1.5rem;max-width:900px}
+.hero h1 em{color:var(--gold-light);font-style:normal}
+.hero-sub{font-size:1.1rem;color:rgba(255,255,255,.65);max-width:560px;margin:0 auto 3rem;font-weight:300}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--gold);color:var(--ink);padding:.85rem 2rem;border-radius:4px;font-weight:600;text-decoration:none;font-size:.9rem;letter-spacing:.03em;transition:all .2s;border:none;cursor:pointer;display:inline-block}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-outline{background:transparent;color:var(--white);padding:.85rem 2rem;border-radius:4px;font-weight:500;text-decoration:none;font-size:.9rem;letter-spacing:.03em;border:1px solid rgba(255,255,255,.35);transition:all .2s;display:inline-block}
+.btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light)}
+.hero-stats{position:absolute;bottom:2.5rem;left:0;right:0;display:flex;justify-content:center;gap:4rem}
+.stat{text-align:center}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold-light)}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.5);letter-spacing:.1em;text-transform:uppercase}
+
+/* SECTION STYLES */
+section{padding:5rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-eyebrow{font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.75rem}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:1.5rem}
+.section-lead{font-size:1.05rem;color:var(--ink-soft);max-width:640px;line-height:1.75}
+
+/* ABOUT NEPAL */
+.about-nepal{background:var(--white)}
+.nepal-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
+.nepal-facts{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.fact-card{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1.25rem;border-left:3px solid var(--gold)}
+.fact-card h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.12em;color:var(--gold);font-weight:600;margin-bottom:.35rem}
+.fact-card p{font-size:.95rem;font-weight:500;color:var(--ink)}
+.nepal-highlights{margin-top:2rem;display:flex;flex-direction:column;gap:.75rem}
+.highlight{display:flex;align-items:center;gap:.75rem;font-size:.95rem;color:var(--ink-soft)}
+.highlight::before{content:'';width:8px;height:8px;background:var(--gold);border-radius:50%;flex-shrink:0}
+
+/* ATTRACTIONS */
+.attractions{background:var(--cream)}
+.attractions-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.attraction-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.attraction-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.1)}
+.attraction-img{height:180px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+
+/* MODAL (added for click-to-explain feature) */
+.kt-modal-overlay{display:none;position:fixed;inset:0;background:rgba(13,9,4,.72);z-index:2000;padding:2.5rem 1.5rem;overflow-y:auto}
+.kt-modal-overlay.show{display:flex;align-items:flex-start;justify-content:center}
+.kt-modal{background:var(--white);border-radius:14px;max-width:640px;width:100%;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.4);animation:kt-pop .18s ease-out}
+@keyframes kt-pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+.kt-modal-hero{height:150px;display:flex;align-items:center;justify-content:center;font-size:4.5rem;position:relative;overflow:hidden}
+.kt-modal-hero img{width:100%;height:100%;object-fit:cover}
+.kt-modal-close{position:absolute;top:.85rem;right:.85rem;width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.35);color:var(--white);border:none;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:1}
+.kt-modal-close:hover{background:rgba(0,0,0,.55)}
+.kt-modal-body{padding:1.75rem}
+.kt-modal-tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold-pale);color:var(--gold);border-radius:3px;padding:.25rem .6rem;margin-bottom:.6rem;font-weight:600}
+.kt-modal-body h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--ink);margin-bottom:.9rem}
+.kt-modal-body p{font-size:.92rem;color:var(--ink-soft);line-height:1.75;margin-bottom:1rem}
+.kt-modal-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+.kt-modal-fact h5{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);font-weight:600;margin-bottom:.25rem}
+.kt-modal-fact p{font-size:.85rem;font-weight:600;color:var(--ink);margin:0}
+body.kt-modal-open{overflow:hidden}
+.attraction-body{padding:1.25rem}
+.attraction-body h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:.5rem;color:var(--ink)}
+.attraction-body p{font-size:.87rem;color:var(--ink-soft);line-height:1.6}
+.attraction-tag{display:inline-block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold-pale);color:var(--gold);border-radius:3px;padding:.25rem .6rem;margin-bottom:.6rem;font-weight:600}
+
+/* SERVICES */
+.services{background:var(--mountain);color:var(--white)}
+.services .section-title{color:var(--white)}
+.services .section-eyebrow{color:var(--gold-light)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.service-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:1.75rem;transition:background .2s}
+.service-card:hover{background:rgba(255,255,255,.1)}
+.service-icon{font-size:2rem;margin-bottom:1rem}
+.service-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.6rem;color:var(--gold-light)}
+.service-card p{font-size:.87rem;color:rgba(255,255,255,.65);line-height:1.6}
+
+/* ACTIVITIES */
+.activities{background:var(--white)}
+.activities-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
+.activity-item{display:flex;gap:1.25rem;padding:1.25rem;border:1px solid var(--border);border-radius:8px;align-items:flex-start;transition:border-color .2s;cursor:pointer}
+.activity-item:hover{border-color:var(--gold)}
+.activity-emoji{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.activity-item h3{font-size:1rem;font-weight:600;margin-bottom:.3rem;color:var(--ink)}
+.activity-item p{font-size:.85rem;color:var(--ink-soft);line-height:1.5}
+.activity-badge{display:inline-block;font-size:.7rem;background:var(--mountain);color:var(--white);border-radius:3px;padding:.2rem .5rem;margin-top:.4rem;font-weight:500}
+
+/* BOOKING */
+.booking{background:var(--cream)}
+.booking-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
+.tab{padding:.6rem 1.25rem;border:1px solid var(--border);background:var(--white);border-radius:6px;cursor:pointer;font-size:.87rem;font-weight:500;color:var(--ink-soft);transition:all .2s}
+.tab.active,.tab:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.booking-form{display:none;background:var(--white);border:1px solid var(--border);border-radius:12px;padding:2rem}
+.booking-form.active{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group.full{grid-column:1/-1}
+label{font-size:.8rem;font-weight:600;color:var(--ink);letter-spacing:.04em;text-transform:uppercase}
+input,select,textarea{padding:.7rem 1rem;border:1px solid var(--border);border-radius:6px;font-size:.9rem;font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);transition:border-color .2s;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);background:var(--white)}
+textarea{resize:vertical;min-height:90px}
+.form-section{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:700;color:var(--ink);margin:1.25rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+
+/* PAYMENT */
+.payment-info{background:var(--gold-pale);border:1px solid var(--gold-light);border-radius:8px;padding:1.25rem;margin-bottom:1.5rem}
+.payment-info p{font-size:.87rem;color:var(--ink-soft)}
+.payment-methods{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:.75rem}
+.pay-badge{background:var(--white);border:1px solid var(--border);border-radius:6px;padding:.4rem .9rem;font-size:.8rem;font-weight:600;color:var(--ink-soft)}
+
+/* VISA */
+.visa-section{background:var(--mountain);color:var(--white)}
+.visa-section .section-title{color:var(--white)}
+.visa-section .section-eyebrow{color:var(--gold-light)}
+.visa-types{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin:2rem 0}
+.visa-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:1.5rem;text-align:center}
+.visa-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--gold-light);margin:.5rem 0}
+.visa-card h3{font-size:1rem;font-weight:600;color:var(--white);margin-bottom:.25rem}
+.visa-card p{font-size:.82rem;color:rgba(255,255,255,.55)}
+.visa-features{margin-top:.75rem;display:flex;flex-direction:column;gap:.35rem}
+.visa-features span{font-size:.8rem;color:rgba(255,255,255,.7)}
+.visa-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:2rem;margin-top:1.5rem}
+.visa-form label{color:rgba(255,255,255,.8)}
+.visa-form input,.visa-form select{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--white)}
+.visa-form input::placeholder{color:rgba(255,255,255,.4)}
+
+/* OWNER */
+.owner{background:var(--white)}
+.owner-grid{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:center;margin-top:2.5rem}
+.owner-photo{background:linear-gradient(135deg,var(--mountain) 0%,var(--mountain-light) 100%);border-radius:16px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;font-size:6rem;position:relative;overflow:hidden}
+.owner-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(transparent,rgba(0,0,0,.5))}
+.owner-name{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.owner-title{font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:1.25rem}
+.owner-bio{font-size:1rem;color:var(--ink-soft);line-height:1.8;margin-bottom:1.5rem}
+.owner-credentials{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.cred{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center}
+.cred-num{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:var(--mountain);display:block}
+.cred-label{font-size:.78rem;color:var(--ink-soft)}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--cream)}
+.testimonials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem}
+.testimonial{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.75rem}
+.stars{color:var(--gold);font-size:1rem;margin-bottom:.75rem}
+.testimonial p{font-size:.9rem;color:var(--ink-soft);line-height:1.7;font-style:italic;margin-bottom:1rem}
+.reviewer{font-size:.82rem;font-weight:600;color:var(--ink)}
+.reviewer-loc{font-size:.78rem;color:var(--mountain-light)}
+
+/* CONTACT */
+.contact{background:var(--ink);color:var(--white)}
+.contact .section-title{color:var(--white)}
+.contact .section-eyebrow{color:var(--gold-light)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-top:2.5rem}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem}
+.contact-item{display:flex;gap:1rem;align-items:flex-start}
+.contact-icon{width:40px;height:40px;background:rgba(201,149,58,.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.contact-item h4{font-size:.82rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gold-light);margin-bottom:.2rem}
+.contact-item p,.contact-item a{font-size:.9rem;color:rgba(255,255,255,.65);text-decoration:none}
+.contact-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:2rem}
+.contact-form label{color:rgba(255,255,255,.7)}
+.contact-form input,.contact-form textarea{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:var(--white)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:rgba(255,255,255,.35)}
+
+/* FOOTER */
+footer{background:#0D0D08;color:rgba(255,255,255,.5);padding:3rem 2rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-light);margin-bottom:.75rem;font-weight:700}
+.footer-desc{font-size:.85rem;line-height:1.7;color:rgba(255,255,255,.45);max-width:260px}
+footer h4{font-size:.75rem;text-transform:uppercase;letter-spacing:.15em;color:rgba(255,255,255,.6);font-weight:600;margin-bottom:.75rem}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+footer ul a{color:rgba(255,255,255,.45);text-decoration:none;font-size:.85rem;transition:color .2s}
+footer ul a:hover{color:var(--gold-light)}
+.footer-bottom{max-width:1100px;margin:.75rem auto 0;display:flex;justify-content:space-between;align-items:center;font-size:.8rem}
+.flag{font-size:1.1rem;vertical-align:middle}
+
+/* NOTIFICATION */
+.notification{position:fixed;bottom:2rem;right:2rem;background:var(--mountain);color:var(--white);padding:1rem 1.5rem;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.3);font-size:.9rem;transform:translateX(150%);transition:transform .4s;z-index:9999;max-width:300px;border-left:4px solid var(--gold)}
+.notification.show{transform:translateX(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  section{padding:3.5rem 1.25rem}
+  .nepal-grid,.owner-grid,.contact-grid{grid-template-columns:1fr}
+  .attractions-grid,.services-grid,.activities-list,.testimonials-grid,.visa-types{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{gap:2rem}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Karishma Travels & Tours</a>
+    <ul class="nav-links">
+      <li class="active-page"><a href="#">Home</a></li>
+
+      <li>
+        <span>About</span>
+        <div class="dropdown">
+          <div class="dropdown-label">Our Agency</div>
+          <a href="#owner">Meet the Founder</a>
+          <a href="#owner">Our Story</a>
+          <a href="#owner">Certifications</a>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-label">Nepal</div>
+          <a href="#about-nepal">About Nepal</a>
+          <a href="#attractions">Tourist Attractions</a>
+        </div>
+      </li>
+
+      <li>
+        <span>Flights</span>
+        <div class="dropdown">
+          <div class="dropdown-label">Air Travel</div>
+          <a href="#booking">Book International Flight</a>
+          <a href="#booking">Domestic Nepal Flights</a>
+          <a href="#booking">Kathmandu (KTM)</a>
+          <a href="#booking">Lukla — Everest Gateway</a>
+          <a href="#booking">Pokhara (PKR)</a>
+          <div class="dropdown-divider"></div>
+          <a href="#booking">Helicopter Charters</a>
+        </div>
+      </li>
+
+      <li>
+        <span>Tours</span>
+        <div class="dropdown">
+          <div class="dropdown-label">Trekking</div>
+          <a href="#booking">Everest Base Camp</a>
+          <a href="#booking">Annapurna Circuit</a>
+          <a href="#booking">Langtang Valley</a>
+          <a href="#booking">Upper Mustang</a>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-label">Other Packages</div>
+          <a href="#booking">Cultural Heritage Tours</a>
+          <a href="#booking">Wildlife & Jungle Safari</a>
+          <a href="#booking">Yoga & Wellness</a>
+        </div>
+      </li>
+
+      <li>
+        <span>Activities</span>
+        <div class="dropdown">
+          <div class="dropdown-label">Adventure</div>
+          <a href="#activities">Rock Climbing</a>
+          <a href="#activities">Whitewater Rafting</a>
+          <a href="#activities">Paragliding</a>
+          <a href="#activities">Mountain Biking</a>
+          <div class="dropdown-divider"></div>
+          <div class="dropdown-label">Experiences</div>
+          <a href="#activities">Birdwatching</a>
+          <a href="#activities">Culinary Tours</a>
+          <a href="#activities">Camping</a>
+        </div>
+      </li>
+
+      <li>
+        <span>Visa</span>
+        <div class="dropdown">
+          <div class="dropdown-label">Visa Services</div>
+          <a href="#visa">Tourist Visa (15 days — $30)</a>
+          <a href="#visa">Tourist Visa (30 days — $50)</a>
+          <a href="#visa">Tourist Visa (90 days — $125)</a>
+          <div class="dropdown-divider"></div>
+          <a href="#visa">Business Visa</a>
+          <a href="#visa">Visa Extension</a>
+          <a href="#visa">Apply & Pay Online</a>
+        </div>
+      </li>
+
+      <li>
+        <span>Hotels</span>
+        <div class="dropdown">
+          <div class="dropdown-label">Accommodation</div>
+          <a href="#booking">Hotels in Kathmandu</a>
+          <a href="#booking">Pokhara Resorts</a>
+          <a href="#booking">Chitwan Jungle Lodges</a>
+          <a href="#booking">Himalayan Teahouses</a>
+          <div class="dropdown-divider"></div>
+          <a href="#booking">Eco Lodges</a>
+          <a href="#booking">Heritage Properties</a>
+        </div>
+      </li>
+
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-hamburger" onclick="toggleMobile()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <a href="#booking" class="nav-cta">Book Now</a>
+
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-section">Main</div>
+  <a href="#">Home</a>
+  <div class="mobile-section">Flights</div>
+  <a href="#booking">International Flights</a>
+  <a href="#booking">Domestic Flights</a>
+  <a href="#booking">Helicopter Charters</a>
+  <div class="mobile-section">Tours & Trekking</div>
+  <a href="#booking">Everest Base Camp</a>
+  <a href="#booking">Annapurna Circuit</a>
+  <a href="#booking">All Tour Packages</a>
+  <div class="mobile-section">Activities</div>
+  <a href="#activities">Rafting, Paragliding & More</a>
+  <div class="mobile-section">Visa</div>
+  <a href="#visa">Apply for Nepal Visa</a>
+  <a href="#visa">Visa Fees & Types</a>
+  <div class="mobile-section">Hotels</div>
+  <a href="#booking">Book Hotels & Lodges</a>
+  <div class="mobile-section">Info</div>
+  <a href="#about-nepal">About Nepal</a>
+  <a href="#attractions">Tourist Attractions</a>
+  <a href="#owner">About Us</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  
+  <svg class="hero-mountains" viewBox="0 0 1440 300" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"> 
+    <polygon points="0,300 200,80 350,180 500,40 650,160 800,20 950,120 1100,60 1250,150 1440,30 1440,300" fill="rgba(44,62,80,0.8)"/>
+    <polygon points="0,300 100,180 250,250 400,120 550,220 700,80 850,200 1000,100 1150,190 1300,110 1440,170 1440,300" fill="rgba(26,18,8,0.9)"/>
+    <polygon points="0,300 0,240 180,300 360,260 540,290 720,255 900,285 1080,260 1260,280 1440,255 1440,300" fill="#1A1208"/>
+    <polygon points="750,40 800,20 850,40" fill="rgba(201,149,58,0.6)"/>
+  </svg>
+    <p class="hero-tagline">Est. 2026· Kathmandu, Nepal</p>
+  <h1>Where the <em>Himalayas</em> Meet the Soul</h1>
+  <p class="hero-sub">Your complete Nepal travel partner — flights, treks, visas, and once-in-a-lifetime journeys to the roof of the world.</p>
+  <div class="hero-actions">
+    <a href="#booking" class="btn-primary">Book Your Journey</a>
+    <a href="#about-nepal" class="btn-outline">Explore Nepal</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">15K+</div><div class="stat-label">Happy Travelers</div></div>
+    <div class="stat"><div class="stat-num">8,849m</div><div class="stat-label">Mt. Everest</div></div>
+    <div class="stat"><div class="stat-num">5.9★</div><div class="stat-label">Avg Rating</div></div>
+  </div>
+</section>
+
+<!-- ABOUT NEPAL -->
+<section id="about-nepal" class="about-nepal">
+  <div class="container">
+    <p class="section-eyebrow">Discover Nepal</p>
+    <h2 class="section-title">The Land of the Himalayas</h2>
+    <div class="nepal-grid">
+      <div>
+        <p class="section-lead">Nepal is a landlocked nation nestled between India and China, home to eight of the world's ten highest mountains, including the legendary Mount Everest. A country of extraordinary contrasts — from the scorching Terai plains to the eternal ice of the high Himalayas, from ancient Newari cities to remote Buddhist monasteries.</p>
+        <div class="nepal-highlights">
+          <div class="highlight">Over 900 different bird species — a birdwatcher's paradise</div>
+          <div class="highlight">UNESCO World Heritage Sites: Pashupatinath, Boudhanath, Swayambhunath & more</div>
+          <div class="highlight">Home to 8 of the world's 14 peaks above 8,000 metres</div>
+          <div class="highlight">Rich cultural tapestry of 125+ ethnic groups and 123 languages</div>
+          <div class="highlight">Birthplace of Lord Buddha in Lumbini</div>
+          <div class="highlight">World-class whitewater rafting on Trishuli, Seti & Kali Gandaki rivers</div>
+        </div>
+      </div>
+      <div>
+        <div class="nepal-facts">
+          <div class="fact-card"><h4>Capital</h4><p>Kathmandu</p></div>
+          <div class="fact-card"><h4>Population</h4><p>30 Million+</p></div>
+          <div class="fact-card"><h4>Currency</h4><p>Nepalese Rupee (NPR)</p></div>
+          <div class="fact-card"><h4>Language</h4><p>Nepali (Official)</p></div>
+          <div class="fact-card"><h4>Best Season</h4><p>Oct–Nov & Mar–Apr</p></div>
+          <div class="fact-card"><h4>Time Zone</h4><p>UTC+5:45</p></div>
+          <div class="fact-card"><h4>Religion</h4><p>Hindu & Buddhist</p></div>
+          <div class="fact-card"><h4>Highest Peak</h4><p>Everest 8,849m</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOURIST ATTRACTIONS -->
+<section id="attractions" class="attractions">
+  <div class="container">
+    <p class="section-eyebrow">Must-Visit Places</p>
+    <h2 class="section-title">Nepal's Legendary Attractions</h2>
+    <p class="section-lead">From ancient temples to towering peaks, these destinations define the Nepal experience.</p>
+    <div class="attractions-grid">
+      <div class="attraction-card" onclick="openAttraction()">
+        <div class="attraction-img"><img src="images/Mount Everest Base Camp.jpeg" alt="Mount Everest Base Camp" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">Himalaya</span>
+          <h3>Mount Everest Base Camp</h3>
+          <p>Trek to the foot of the world's highest mountain at 5,364m. The 14-day Everest Base Camp trek is Nepal's most iconic journey, passing through Sherpa villages and glacial landscapes.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('pashupatinath')">
+        <div class="attraction-img"><img src="images/Pashupatinath.jpeg" alt="Pashupatinath Temple" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">UNESCO Heritage</span>
+          <h3>Pashupatinath Temple</h3>
+          <p>The holiest Hindu shrine in Nepal, situated on the banks of the Bagmati River in Kathmandu. A sacred complex of temples, ashrams, and cremation ghats that has stood since the 5th century.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('boudhanath')">
+        <div class="attraction-img"><img src="images/boudha.jpeg" alt="Boudhanath Stupa" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">UNESCO Heritage</span>
+          <h3>Boudhanath Stupa</h3>
+          <p>One of the world's largest Buddhist stupas, a spiritual hub for the Tibetan diaspora. The all-seeing eyes of Buddha gaze in four directions from this magnificent 36-metre dome.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('pokhara')">
+        <div class="attraction-img"><img src="images/pokhara.jpeg" alt="Pokhara & Phewa Lake" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">Lake City</span>
+          <h3>Pokhara & Phewa Lake</h3>
+          <p>Nepal's adventure capital with stunning reflections of the Annapurna range in tranquil Phewa Lake. The gateway to Annapurna treks, paragliding, and caves.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('chitwan')">
+        <div class="attraction-img"><img src="images/Chitwan.jpeg" alt="Chitwan National Park" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">Wildlife</span>
+          <h3>Chitwan National Park</h3>
+          <p>A UNESCO World Heritage jungle hosting Bengal tigers, one-horned rhinos, and gharial crocodiles. Explore by elephant, jeep, or dugout canoe through the tall grass wilderness.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('lumbini')">
+        <div class="attraction-img"><img src="images/Lumbini.jpeg" alt="Lumbini — Birthplace of Buddha" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">Sacred Site</span>
+          <h3>Lumbini — Birthplace of Buddha</h3>
+          <p>The sacred garden where Siddhartha Gautama was born in 623 BC. A pilgrimage site for millions, with monasteries from 42 countries surrounding the ancient Ashoka Pillar.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('bhaktapur')">
+        <div class="attraction-img"><img src="images/bhaktapur.jpeg" alt="Bhaktapur Durbar Square" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">Medieval City</span>
+          <h3>Bhaktapur Durbar Square</h3>
+          <p>A medieval city-state frozen in time, with 5th-century pagodas, wood-carved palaces, and potters crafting clay under the watchful eyes of ancient deities.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('annapurna')">
+        <div class="attraction-img" style="background:linear-gradient(135deg,#1B4F72,#5DADE2)"><img src="C:/Users/indra/OneDrive/Desktop/travel/images/abc.jpeg" alt="Annapurna Circuit Trek" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">Trekking</span>
+          <h3>Annapurna Circuit</h3>
+          <p>The world's greatest trek — a 160–230km loop through diverse landscapes from subtropical forests to arctic high passes, crossing the 5,416m Thorong La.</p>
+        </div>
+      </div>
+      <div class="attraction-card" onclick="openAttraction('swayambhunath')">
+        <div class="attraction-img" style="background:linear-gradient(135deg,#1C2833,#7F8C8D)"><img src="images/Swoyambhu.jpeg" alt="Swayambhunath (Monkey Temple)" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.parentElement.dataset.fallback='1';this.insertAdjacentHTML('afterend','<span></span>')"></div>
+        <div class="attraction-body">
+          <span class="attraction-tag">UNESCO Heritage</span>
+          <h3>Swayambhunath (Monkey Temple)</h3>
+          <p>Perched atop a hill with panoramic views of Kathmandu Valley, this 2,500-year-old stupa is draped in prayer flags and frequented by resident monkeys and pilgrims alike.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="container">
+    <p class="section-eyebrow">What We Offer</p>
+    <h2 class="section-title">Complete Nepal Travel Services</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>International & Domestic Flights</h3>
+        <p>Book international flights to Tribhuvan International Airport and domestic connections to Lukla, Pokhara, Bharatpur, and 42 other airports across Nepal.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Trekking & Expedition Packages</h3>
+        <p>Guided EBC, Annapurna, Langtang, and off-beat treks with licensed guides, permits, porter services, and full insurance coverage.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Hotels & Teahouse Bookings</h3>
+        <p>Curated accommodations from luxury Kathmandu hotels to cozy Himalayan teahouses — vetted for quality, safety, and authentic experience.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Visa Processing (Tourist & Business)</h3>
+        <p>Fast-track visa application support for Nepal tourist visas, business visas, and visa extensions. We handle the paperwork so you don't have to.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Ground Transportation</h3>
+        <p>Airport transfers, private car hire, tourist bus tickets, and helicopter charters for altitude rescues or scenic Everest sunrise flights.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Travel Insurance</h3>
+        <p>Comprehensive policies covering high-altitude trekking, helicopter evacuation, medical emergencies, and trip cancellations — tailored for Nepal adventures.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Wildlife & Jungle Safaris</h3>
+        <p>Chitwan and Bardia national park packages with naturalist guides, elephant rides, canoeing, and luxury tented camps deep in the jungle.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Yoga & Wellness Retreats</h3>
+        <p>Spiritual journeys including Vipassana meditation retreats in Lumbini, yoga immersions in Pokhara, and Ayurvedic wellness programs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"></div>
+        <h3>Cultural & Photography Tours</h3>
+        <p>Immersive cultural tours through Newari festivals, Thangka painting studios, Sherpa villages, and guided photography expeditions to iconic viewpoints.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities" class="activities">
+  <div class="container">
+    <p class="section-eyebrow">Adventures Await</p>
+    <h2 class="section-title">Things to Do in Nepal</h2>
+    <p class="section-lead">Nepal is far more than trekking. From adrenaline sports to spiritual quests, there's something for every kind of traveler.</p>
+    <div class="activities-list">
+      <div class="activity-item" onclick="openActivity('climbing')">
+        <span class="activity-emoji">🧗</span>
+        <div>
+          <h3>Rock Climbing & Mountaineering</h3>
+          <p>From beginner climbing walls in Nagarjun to technical expeditions on Mera Peak and Island Peak. Nepal has licensed climbing schools and world-class instructors.</p>
+          <span class="activity-badge">All skill levels</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('rafting')">
+        <span class="activity-emoji">🚣</span>
+        <div>
+          <h3>Whitewater Rafting</h3>
+          <p>Nepal's glacial rivers offer Grade 2 to Grade 5 rapids. The Trishuli, Bhote Kosi, and Kali Gandaki rivers are world-renowned for thrilling multi-day raft expeditions.</p>
+          <span class="activity-badge">Mar–Nov season</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('paragliding')">
+        <span class="activity-emoji">🪂</span>
+        <div>
+          <h3>Paragliding over Pokhara</h3>
+          <p>Soar above Phewa Lake with the Annapurna range as your backdrop. Pokhara is rated one of the world's top paragliding destinations, with year-round favorable thermals.</p>
+          <span class="activity-badge">Oct–May ideal</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('biking')">
+        <span class="activity-emoji">🚵</span>
+        <div>
+          <h3>Mountain Biking</h3>
+          <p>Ride ancient trade routes, Himalayan dirt tracks, and technical downhill trails. The Mustang trail and Kathmandu Valley rim ride are legendary circuits.</p>
+          <span class="activity-badge">Guided tours available</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('camping')">
+        <span class="activity-emoji">🏕️</span>
+        <div>
+          <h3>Camping & Wilderness Treks</h3>
+          <p>Sleep under the stars in the Khumbu or Mustang. We arrange full camping equipment, cooks, and porters for truly off-grid Himalayan experiences.</p>
+          <span class="activity-badge">Remote areas</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('birdwatching')">
+        <span class="activity-emoji">🦜</span>
+        <div>
+          <h3>Birdwatching</h3>
+          <p>Nepal is a premier birding destination with 900+ species including the Danphe (Himalayan Monal), Spiny Babbler, and rare Bengal Florican in the Terai grasslands.</p>
+          <span class="activity-badge">Year-round</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('helicopter')">
+        <span class="activity-emoji">🚁</span>
+        <div>
+          <h3>Helicopter Tours</h3>
+          <p>Everest sunrise flights, Annapurna circuit shortcut landings at Jomsom, and luxury heli-camping at 4,000m. Spectacular views in half the time.</p>
+          <span class="activity-badge">Luxury option</span>
+        </div>
+      </div>
+      <div class="activity-item" onclick="openActivity('culinary')">
+        <span class="activity-emoji">🥟</span>
+        <div>
+          <h3>Culinary & Cooking Tours</h3>
+          <p>Learn to make dal bhat, momo dumplings, and Newari feasts. Street food walking tours in Thamel and Patan, plus visits to organic farms in the valley.</p>
+          <span class="activity-badge">Food lovers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHT & PACKAGE BOOKING -->
+<section id="booking" class="booking">
+  <div class="container">
+    <p class="section-eyebrow">Online Booking</p>
+    <h2 class="section-title">Book Your Nepal Experience</h2>
+    <p class="section-lead">Reserve flights, tour packages, and hotel stays with secure online payment. We accept all major cards and bank transfers.</p>
+
+    <div class="booking-tabs" style="margin-top:2rem">
+      <button class="tab active" onclick="switchTab(event,'flights')"> Flight Booking</button>
+      <button class="tab" onclick="switchTab(event,'packages')">Tour Packages</button>
+      <button class="tab" onclick="switchTab(event,'hotels')">Hotel Booking</button>
+    </div>
+
+    <!-- FLIGHT FORM -->
+    <form id="tab-flights" class="booking-form active" onsubmit="event.preventDefault();submitBooking('flight')">
+      <div class="payment-info">
+        <p><strong>Secure Booking:</strong> All payments processed via SSL encryption. We accept Visa, Mastercard, AMEX, PayPal, and bank wire transfer.</p>
+        <div class="payment-methods">
+          <span class="pay-badge">💳 Visa</span>
+          <span class="pay-badge">💳 Mastercard</span>
+          <span class="pay-badge">💳 AMEX</span>
+          <span class="pay-badge">🅿️ PayPal</span>
+          <span class="pay-badge">🏦 Wire Transfer</span>
+          <span class="pay-badge">📱 eSewa</span>
+          <span class="pay-badge">📱 Khalti</span>
+        </div>
+      </div>
+      <p class="form-section">Flight Details</p>
+      <div style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap">
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;text-transform:none;letter-spacing:0"><input type="radio" name="trip" value="roundtrip" checked style="width:auto"> Round Trip</label>
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;text-transform:none;letter-spacing:0;margin-left:1rem"><input type="radio" name="trip" value="oneway" style="width:auto"> One Way</label>
+        <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer;font-size:.9rem;text-transform:none;letter-spacing:0;margin-left:1rem"><input type="radio" name="trip" value="multi" style="width:auto"> Multi-city</label>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>From (Origin City)</label>
+          <input type="text" placeholder="e.g. London, Dubai, New York" required>
+        </div>
+        <div class="form-group">
+          <label>To (Destination)</label>
+          <select>
+            <option>Kathmandu (KTM) — Tribhuvan Intl</option>
+            <option>Pokhara (PKR)</option>
+            <option>Lukla (LUA) — Everest Gateway</option>
+            <option>Bharatpur (BHR) — Chitwan</option>
+            <option>Biratnagar (BIR)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Departure Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Return Date</label>
+          <input type="date">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Passengers</label>
+          <select>
+            <option>1 Adult</option>
+            <option>2 Adults</option>
+            <option>2 Adults + 1 Child</option>
+            <option>2 Adults + 2 Children</option>
+            <option>Group (5+)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Cabin Class</label>
+          <select>
+            <option>Economy</option>
+            <option>Premium Economy</option>
+            <option>Business Class</option>
+            <option>First Class</option>
+          </select>
+        </div>
+      </div>
+      <p class="form-section">Passenger Information</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name (as on passport)</label>
+          <input type="text" placeholder="Given name + surname" required>
+        </div>
+        <div class="form-group">
+          <label>Passport Number</label>
+          <input type="text" placeholder="e.g. A1234567">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="you@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" placeholder="+1 (555) 000-0000">
+        </div>
+      </div>
+      <p class="form-section">Payment Details</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" placeholder="1234 5678 9012 3456" maxlength="19" required>
+        </div>
+        <div class="form-group">
+          <label>Name on Card</label>
+          <input type="text" placeholder="As it appears on card" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Expiry Date</label>
+          <input type="text" placeholder="MM / YY" maxlength="7" required>
+        </div>
+        <div class="form-group">
+          <label>CVV / CVC</label>
+          <input type="text" placeholder="3–4 digits" maxlength="4" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem;font-size:1rem;padding:1rem">Confirm & Pay Flight Booking</button>
+    </form>
+
+    <!-- PACKAGES FORM -->
+    <form id="tab-packages" class="booking-form" onsubmit="event.preventDefault();submitBooking('package')">
+      <div class="payment-info">
+        <p><strong>Package Booking:</strong> Reserve your spot with a 30% deposit. Full payment due 30 days before departure. Free cancellation up to 45 days in advance.</p>
+      </div>
+      <p class="form-section">Choose Your Package</p>
+      <div class="form-group">
+        <label>Select Tour Package</label>
+        <select>
+          <option>Everest Base Camp Trek (14 days) </option>
+          <option>Annapurna Circuit (21 days)</option>
+          <option>Kathmandu Valley Heritage (5 days)</option>
+          <option>Chitwan Jungle Safari (3 days)</option>
+          <option>Langtang Valley Trek (10 days)</option>
+          <option>Mustang Upper Expedition (14 days)</option>
+          <option>Lumbini Pilgrimage (4 days)</option>
+          <option>Nepal Highlights Combo (10 days)</option>
+          <option>Custom Itinerary (contact us)</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Start Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Group Size</label>
+          <select>
+            <option>Solo (1 person)</option>
+            <option>Couple (2 people)</option>
+            <option>Small Group (3–6)</option>
+            <option>Large Group (7–15)</option>
+            <option>Corporate Group (15+)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Special Requests / Dietary Needs</label>
+        <textarea placeholder="Vegetarian, altitude acclimatization concerns, mobility needs, photography preferences..."></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@email.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" placeholder="For 30% deposit payment" required>
+        </div>
+        <div class="form-group">
+          <label>CVV / Expiry</label>
+          <input type="text" placeholder="CVV — MM/YY" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem;font-size:1rem;padding:1rem">Pay Deposit & Reserve Package</button>
+    </form>
+
+    <!-- HOTEL FORM -->
+    <form id="tab-hotels" class="booking-form" onsubmit="event.preventDefault();submitBooking('hotel')">
+      <div class="payment-info">
+        <p><strong>Hotel Booking:</strong> Instant confirmation for 800+ properties across Nepal. Free cancellation on most bookings up to 24 hours before check-in.</p>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Destination / City</label>
+          <select>
+            <option>Kathmandu</option>
+            <option>Pokhara</option>
+            <option>Chitwan / Sauraha</option>
+            <option>Namche Bazaar (Everest Region)</option>
+            <option>Lukla</option>
+            <option>Lumbini</option>
+            <option>Bhaktapur</option>
+            <option>Nagarkot</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Property Type</label>
+          <select>
+            <option>Hotel (3–5 star)</option>
+            <option>Boutique / Heritage Hotel</option>
+            <option>Guesthouse</option>
+            <option>Teahouse (Trek Route)</option>
+            <option>Eco Lodge / Jungle Camp</option>
+            <option>Resort / Spa</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Check-in Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label>Check-out Date</label>
+          <input type="date" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Rooms</label>
+          <select><option>1 Room</option><option>2 Rooms</option><option>3 Rooms</option><option>4+ Rooms</option></select>
+        </div>
+        <div class="form-group">
+          <label>Guests</label>
+          <select><option>1 Adult</option><option>2 Adults</option><option>2 Adults + 1 Child</option><option>2 Adults + 2 Children</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Guest Name</label>
+          <input type="text" placeholder="Full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="Confirmation sent here" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Card Number</label>
+          <input type="text" placeholder="1234 5678 9012 3456" required>
+        </div>
+        <div class="form-group">
+          <label>CVV / Expiry</label>
+          <input type="text" placeholder="CVV — MM/YY" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem;font-size:1rem;padding:1rem">Confirm Hotel Booking</button>
+    </form>
+  </div>
+</section>
+
+<!-- VISA SECTION -->
+<section id="visa" class="visa-section">
+  <div class="container">
+    <p class="section-eyebrow">Visa Services</p>
+    <h2 class="section-title">Nepal Visa & Visapay</h2>
+    <p style="color:rgba(255,255,255,.65);max-width:600px;margin-bottom:1rem">Most nationalities receive a visa on arrival at Tribhuvan International Airport. We handle your visa application, fees, and documentation in advance for a seamless arrival.</p>
+    <div class="visa-types">
+      <div class="visa-card">
+        <h3>Tourist Visa</h3>
+        <div class="visa-price">$30</div>
+        <p>15 Days</p>
+        <div class="visa-features">
+          <span>✓ Single entry</span>
+          <span>✓ On arrival available</span>
+          <span>✓ Extendable in KTM</span>
+        </div>
+      </div>
+      <div class="visa-card">
+        <h3>Tourist Visa</h3>
+        <div class="visa-price">$50</div>
+        <p>30 Days — Most Popular</p>
+        <div class="visa-features">
+          <span>✓ Multiple entry</span>
+          <span>✓ On arrival available</span>
+          <span>✓ Extendable up to 150 days</span>
+        </div>
+      </div>
+      <div class="visa-card">
+        <h3>Tourist Visa</h3>
+        <div class="visa-price">$125</div>
+        <p>90 Days</p>
+        <div class="visa-features">
+          <span>✓ Multiple entry</span>
+          <span>✓ Pre-arranged only</span>
+          <span>✓ Best for long stays</span>
+        </div>
+      </div>
+    </div>
+    <form class="visa-form" onsubmit="event.preventDefault();submitVisa()">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--gold-light);margin-bottom:1.25rem">Apply & Pay for Nepal Visa</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Full Name (Passport)</label>
+          <input type="text" placeholder="As shown in your passport" required>
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Nationality / Country</label>
+          <input type="text" placeholder="e.g. United Kingdom, Australia" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Passport Number</label>
+          <input type="text" placeholder="Passport no." required>
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Passport Expiry Date</label>
+          <input type="date" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Planned Arrival Date</label>
+          <input type="date" required>
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Visa Type</label>
+          <select style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff">
+            <option>15-Day Tourist Visa — $30</option>
+            <option>30-Day Tourist Visa — $50 (Recommended)</option>
+            <option>90-Day Tourist Visa — $125</option>
+            <option>Business Visa — Contact us</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Email Address</label>
+          <input type="email" placeholder="For visa confirmation" required>
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Card Number (Visapay)</label>
+          <input type="text" placeholder="1234 5678 9012 3456" required>
+        </div>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;margin-top:.5rem;font-size:1rem;padding:1rem"> Submit Visa Application & Pay</button>
+    </form>
+  </div>
+</section>
+
+<!-- OWNER / ABOUT US -->
+<section id="owner" class="owner">
+  <div class="container">
+    <p class="section-eyebrow">About Us</p>
+    <h2 class="section-title">Meet Our Founder</h2>
+    <div class="owner-grid">
+      <div class="owner-photo">
+        <img src="images/Owner.jpeg" alt="Krishna Man Ranjitkar" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=&quot;font-size:5rem;z-index:1&quot;></span>')">
+      </div>
+      <div>
+        <h3 class="owner-name">Krishna Man Ranjitkar</h3>
+        <p class="owner-title">Founder & President</p>
+        <p class="owner-bio">Born in the shadow of the Annapurna range in Pokhara, Raj grew up guiding his first trekking groups at age 16. After earning a degree in Tourism Management from Tribhuvan University and a postgraduate diploma from Kathmandu Business School, he founded Nepal Trails International in 2004 with a single mission: to share the real Nepal — not just the postcard version.</p>
+        <p class="owner-bio">Over two decades, Raj has personally guided groups to Everest Base Camp more than 40 times, developed community-based tourism programs in 12 rural villages, and co-authored Nepal's licensed trekking guide curriculum. He is a certified member of the Trekking Agencies' Association of Nepal (TAAN), Nepal Mountaineering Association (NMA), and the Pacific Asia Travel Association (PATA).</p>
+        <p class="owner-bio">"Every traveler who comes to Nepal carries home a piece of the Himalayas in their heart. Our job is to make sure they find it."</p>
+        <div class="owner-credentials">
+          <div class="cred"><span class="cred-num">20+</span><span class="cred-label">Years in business</span></div>
+          <div class="cred"><span class="cred-num">40+</span><span class="cred-label">EBC guiding trips</span></div>
+          <div class="cred"><span class="cred-num">15K+</span><span class="cred-label">Guests served</span></div>
+          <div class="cred"><span class="cred-num">3</span><span class="cred-label">Industry certifications</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <p class="section-eyebrow">Traveler Stories</p>
+    <h2 class="section-title">What Our Guests Say</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Karishma Travels & Tours arranged our Everest Base Camp trek flawlessly. Our guide Pemba was knowledgeable, patient, and genuinely cared about our safety. The teahouse bookings were perfect. Absolute 10/10."</p>
+        <div class="reviewer">Sarah & Tom Mitchell</div>
+        <div class="reviewer-loc">London, United Kingdom</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"Raj personally called me before my trip to go over every detail. The visa assistance saved me hours of confusion. Chitwan safari was magical — we saw a Bengal tiger on day one. Can't wait to return for the Annapurna circuit."</p>
+        <div class="reviewer">Marcus de Villiers</div>
+        <div class="reviewer-loc">Cape Town, South Africa</div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p>"As a solo female traveler, I was nervous about Nepal. The team made me feel completely safe and well looked after from airport pickup to farewell. Boudhanath at dawn was the most spiritual experience of my life."</p>
+        <div class="reviewer">Yuki Tanaka</div>
+        <div class="reviewer-loc">Tokyo, Japan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="container">
+    <p class="section-eyebrow">Get in Touch</p>
+    <h2 class="section-title">Plan Your Nepal Journey</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Our Office</h4>
+            <p>Thamel-26, Kathmandu, Nepal 44600<br>Near Kathmandu Guest House, G.P.O Box: 20549</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone / WhatsApp</h4>
+            <a href="tel:+9771234567">+977-1-4700 567</a><br>
+            <a href="tel:+9779801234567">+977-980-1234567 (WhatsApp)</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:info@karishmatravels.com">info@karishmatravels.com</a><br>
+            <a href="mailto:bookings@karishmatravels.com">bookings@karishmatravels.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <h4>Business Hours (NPT)</h4>
+            <p>Sun–Fri: 9:00 AM – 6:00 PM<br>Saturday: 10:00 AM – 4:00 PM</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <h4>Follow Us</h4>
+            <p>Facebook · Instagram · TripAdvisor<br>YouTube · LinkedIn</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault();submitContact()">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);margin-bottom:1.25rem;font-weight:700">Send Us a Message</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,.7)">Your Name</label>
+            <input type="text" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label style="color:rgba(255,255,255,.7)">Email</label>
+            <input type="email" placeholder="your@email.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Inquiry Type</label>
+          <select style="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.85)">
+            <option>Trek / Expedition Booking</option>
+            <option>Flight Booking</option>
+            <option>Visa Assistance</option>
+            <option>Hotel Reservation</option>
+            <option>Custom Tour Itinerary</option>
+            <option>Group / Corporate Travel</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label style="color:rgba(255,255,255,.7)">Message</label>
+          <textarea placeholder="Tell us your travel dates, group size, interests, and any special requirements..." style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;font-size:1rem;padding:.9rem">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">🏔️ Karishma Travels & Tours</div>
+      <p class="footer-desc">Your trusted Nepal travel partner since 2004. Licensed, insured, and passionate about connecting the world with the Himalayas.</p>
+      <div style="margin-top:1rem;font-size:.8rem">
+        <span>🇳🇵 Registered: Dept. of Tourism, Nepal</span><br>
+        <span style="display:block;margin-top:.35rem">TAAN Member · NMA Certified · PATA Member</span>
+      </div>
+    </div>
+    <div>
+      <h4>Destinations</h4>
+      <ul>
+        <li><a href="#attractions">Everest Region</a></li>
+        <li><a href="#attractions">Annapurna Region</a></li>
+        <li><a href="#attractions">Kathmandu Valley</a></li>
+        <li><a href="#attractions">Pokhara</a></li>
+        <li><a href="#attractions">Chitwan</a></li>
+        <li><a href="#attractions">Mustang</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#booking">Flight Booking</a></li>
+        <li><a href="#booking">Tour Packages</a></li>
+        <li><a href="#visa">Visa Services</a></li>
+        <li><a href="#booking">Hotel Booking</a></li>
+        <li><a href="#activities">Activities</a></li>
+        <li><a href="#contact">Custom Tours</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#owner">About Us</a></li>
+        <li><a href="#owner">Our Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Cancellation Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Karishma Travels & Tours Pvt. Ltd. All rights reserved.</span>
+    <span><span class="flag">🇳🇵</span> Made with love in Kathmandu</span>
+  </div>
+</footer>
+
+<!-- DETAIL MODAL (Attractions & Activities) -->
+<div class="kt-modal-overlay" id="ktModalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="kt-modal">
+    <div class="kt-modal-hero" id="ktModalHero">
+      <button class="kt-modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+    <div class="kt-modal-body">
+      <span class="kt-modal-tag" id="ktModalTag"></span>
+      <h3 id="ktModalTitle"></h3>
+      <p id="ktModalDesc"></p>
+      <div class="kt-modal-facts" id="ktModalFacts"></div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notif"></div>
+
+<script>
+function toggleMobile(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function switchTab(evt,tab){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.booking-form').forEach(f=>f.classList.remove('active'));
+  evt.currentTarget.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+function showNotif(msg){
+  const n=document.getElementById('notif');
+  n.textContent=msg;
+  n.classList.add('show');
+  setTimeout(()=>n.classList.remove('show'),4000);
+}
+
+function submitBooking(type){
+  const labels={flight:'Flight booking',package:'Package reservation',hotel:'Hotel booking'};
+  showNotif('✅ '+labels[type]+' confirmed! Check your email for details and payment receipt.');
+}
+
+function submitVisa(){
+  showNotif('✅ Visa application submitted! You\'ll receive confirmation within 24 hours.');
+}
+
+function submitContact(){
+  showNotif('✅ Message sent! Our team will reply within 4 business hours.');
+}
+
+/* ===== ATTRACTION & ACTIVITY DETAIL DATA (click-to-explain feature) ===== */
+const attractionData={
+  ebc:{img:'images/Mount Everest Base Camp.jpg',bg:'linear-gradient(135deg,#2C3E50,#3498db)',tag:'Himalaya',title:'Mount Everest Base Camp',
+    desc:"Everest Base Camp sits at 5,364m at the foot of the world's tallest mountain, 8,849m above sea level. The classic trek begins with a dramatic flight into Lukla, then winds for roughly two weeks through Sherpa villages, pine forests, suspension bridges, and the Sagarmatha National Park before reaching the glacial moraine of the Khumbu Icefall. Along the way trekkers pass through Namche Bazaar, the region's bustling trading hub, and Tengboche Monastery, one of the most sacred Buddhist sites in the Khumbu. Most itineraries also include a side trip up Kala Patthar (5,545m) for the best panoramic view of Everest itself.",
+    facts:{Duration:'12–14 days',Difficulty:'Challenging','Best Season':'Mar–May, Sep–Nov','Max Altitude':'5,545m (Kala Patthar)'}},
+  pashupatinath:{img:'images/Pashupatinath.jpg',bg:'linear-gradient(135deg,#8B4513,#D2691E)',tag:'UNESCO Heritage',title:'Pashupatinath Temple',
+    desc:"Pashupatinath is Nepal's most sacred Hindu temple complex, dedicated to Lord Shiva and set on the banks of the holy Bagmati River in Kathmandu. Dating back to at least the 5th century, the pagoda-style main temple (closed to non-Hindus, though visible from across the river) is surrounded by dozens of smaller shrines, ashrams, and the cremation ghats where Hindu funeral rites are performed in public view. Sadhus (Hindu holy men) in saffron robes are a common sight, and the complex is especially lively during the Maha Shivaratri festival.",
+    facts:{Built:'5th century (rebuilt)',Type:'Hindu Temple',Entry:'Non-Hindus view from riverbank',Best:'Evening aarti ceremony'}},
+  boudhanath:{img:'images/boudha.jpg',bg:'linear-gradient(135deg,#6A0DAD,#9B59B6)',tag:'UNESCO Heritage',title:'Boudhanath Stupa',
+    desc:"Boudhanath is one of the largest spherical stupas in the world and the spiritual heart of Kathmandu's Tibetan Buddhist community. Believed to date to the 14th century, the massive white dome is topped with a gilded spire painted with the all-seeing eyes of the Buddha, watching over the four cardinal directions. Pilgrims and monks walk clockwise around the base spinning prayer wheels, and the surrounding square is ringed with monasteries, butter-lamp shops, and rooftop cafés — sunset, when the stupa is lit and chanting begins, is the most atmospheric time to visit.",
+    facts:{Height:'36 metres',Built:'14th century',Tradition:'Tibetan Buddhist',Best:'Sunset circumambulation'}},
+  pokhara:{img:'images/pokhara.jpg',bg:'linear-gradient(135deg,#1A5276,#2E86AB)',tag:'Lake City',title:'Pokhara & Phewa Lake',
+    desc:"Pokhara is Nepal's adventure capital and the gateway to the Annapurna range. The city sits beside tranquil Phewa Lake, where on a clear morning the snow-capped peaks of Machapuchare (Fishtail) and the Annapurnas reflect perfectly on the water. Beyond the lake, Pokhara offers the World Peace Pagoda, the underground Gupteshwor Cave, Devi's Falls, and easy access to some of the best paragliding in the world. It's also the standard starting and ending point for the Annapurna Circuit and Annapurna Base Camp treks.",
+    facts:{Elevation:'822m',Highlight:'Phewa Lake & Machapuchare view',Known:'Paragliding & trekking gateway',Best:'Oct–Nov, Mar–Apr'}},
+  chitwan:{img:'images/Chitwan.jpg',bg:'linear-gradient(135deg,#145A32,#27AE60)',tag:'Wildlife',title:'Chitwan National Park',
+    desc:"Chitwan National Park, Nepal's first national park and a UNESCO World Heritage Site, protects one of the last strongholds of the greater one-horned rhinoceros along with Bengal tigers, gharial crocodiles, and over 500 bird species across its subtropical grassland and riverine forest. Visitors explore by jeep safari, guided jungle walk, or traditional dugout canoe along the Rapti River, and many lodges also offer cultural evenings with the local Tharu community, known for their distinctive stick dance.",
+    facts:{Established:'1973',Area:'952 sq km',Famous:'One-horned rhino & Bengal tiger',Best:'Oct–Mar'}},
+  lumbini:{img:'images/Lumbini.jpg',bg:'linear-gradient(135deg,#7D6608,#F1C40F)',tag:'Sacred Site',title:'Lumbini — Birthplace of Buddha',
+    desc:"Lumbini is revered as the birthplace of Siddhartha Gautama, who would become the Buddha, around the 6th century BC. At the heart of the site is the Maya Devi Temple, marking the exact spot of his birth beside the sacred Puskarini pond, and the Ashoka Pillar, erected by the Mauryan emperor in 249 BC to commemorate his pilgrimage. Surrounding the ancient core, the Lumbini Development Zone hosts dozens of monasteries built by Buddhist communities from over 40 countries, each reflecting a distinct national architectural style.",
+    facts:{Era:'6th century BC',UNESCO:'Listed 1997',Monasteries:'40+ countries represented',Best:'Cool season, Oct–Mar'}},
+  bhaktapur:{img:'images/bhaktapur.jpeg',bg:'linear-gradient(135deg,#641E16,#E74C3C)',tag:'Medieval City',title:'Bhaktapur Durbar Square',
+    desc:"Bhaktapur, the 'City of Devotees', is the best-preserved of Kathmandu Valley's three royal cities, with a Durbar Square full of intricately carved wooden palaces, pagoda temples, and courtyards dating largely from the Malla dynasty (12th–18th centuries). Highlights include the 55-Window Palace, the five-tiered Nyatapola Temple, and Pottery Square, where artisans still shape clay on traditional wheels. Much of the historic core is pedestrian-only, and the city is famous for its Bhaktapur curd (juju dhau) and the raucous Bisket Jatra festival each April.",
+    facts:{Founded:'12th century',Dynasty:'Malla',Landmark:'Nyatapola Temple (5 tiers)',Best:'Early morning, fewer crowds'}},
+  annapurna:{img:'images/ABC.jpg',bg:'linear-gradient(135deg,#1B4F72,#5DADE2)',tag:'Trekking',title:'Annapurna Circuit',
+    desc:"Often called the world's greatest trek, the Annapurna Circuit loops for 160–230km around the Annapurna massif, crossing an extraordinary range of landscapes — from subtropical rice terraces and rhododendron forests to high desert plateaus reminiscent of Tibet. The trek's high point is the Thorong La Pass at 5,416m, a demanding but spectacular crossing between the Manang and Mustang valleys. Teahouses along the entire route mean trekkers can travel without camping gear, and side trips to Poon Hill, Tilicho Lake, or Muktinath are popular add-ons.",
+    facts:{Length:'160–230 km',Duration:'15–21 days',Difficulty:'Challenging',Highpoint:'Thorong La, 5,416m'}},
+  swayambhunath:{img:'images/Swoyambhu.jpg',bg:'linear-gradient(135deg,#1C2833,#7F8C8D)',tag:'UNESCO Heritage',title:'Swayambhunath (Monkey Temple)',
+    desc:"Swayambhunath crowns a forested hill on the western edge of Kathmandu Valley and is one of the oldest religious sites in Nepal, with elements dating back over 2,000 years. The climb of 365 stone steps leads to the great white stupa, its golden spire painted with the Buddha's watchful eyes, surrounded by prayer wheels, votive shrines, and Tibetan monasteries. It earned its popular nickname from the large troop of resident rhesus macaques that roam the grounds, and the summit offers one of the finest panoramic views over the Kathmandu Valley.",
+    facts:{Age:'2,000+ years',Steps:'365 to the summit',View:'Panoramic Kathmandu Valley',Best:'Sunrise or sunset'}}
+};
+
+const activityData={
+  climbing:{emoji:'',tag:'Adventure',title:'Rock Climbing & Mountaineering',
+    desc:"Nepal offers climbing for every level, from half-day sessions on the bolted crags of Nagarjun Forest just outside Kathmandu to full mountaineering expeditions on trekking peaks like Mera Peak (6,476m) and Island Peak (6,189m), both popular introductions to Himalayan mountaineering. Licensed climbing schools provide equipment, training, and certified guides, and acclimatization days are built into every itinerary to manage altitude safely.",
+    facts:{Level:'Beginner to expert',Popular:'Mera & Island Peak',Season:'Mar–May, Sep–Nov',Includes:'Guides, permits, gear hire'}},
+  rafting:{emoji:'',tag:'Adventure',title:'Whitewater Rafting',
+    desc:"Fed by Himalayan glaciers, Nepal's rivers rank among the best whitewater in the world. The Trishuli River is ideal for beginners and short day trips from Kathmandu, the Kali Gandaki offers scenic Grade 3–4 rapids near Pokhara, and the remote Bhote Kosi delivers intense Grade 4–5 whitewater for experienced rafters. Multi-day expeditions combine rafting with riverside camping and are a popular add-on to a Chitwan safari.",
+    facts:{Grades:'2–5 depending on river',Season:'Mar–Jun, Sep–Nov',Popular:'Trishuli, Kali Gandaki',Duration:'Half-day to 3 days'}},
+  paragliding:{emoji:'',tag:'Adventure',title:'Paragliding over Pokhara',
+    desc:"Pokhara is consistently ranked among the world's top paragliding destinations thanks to reliable thermals and a dramatic backdrop — pilots launch from Sarangkot (1,592m) and soar above Phewa Lake with uninterrupted views of the Annapurna and Machapuchare peaks before landing lakeside. Tandem flights require no experience and typically last 25–40 minutes, with options to add acrobatic maneuvers for thrill-seekers.",
+    facts:{Launch:'Sarangkot, 1,592m','Flight Time':'25–40 minutes',Season:'Year-round, best Oct–May',Experience:'No experience needed (tandem)'}},
+  biking:{emoji:'',tag:'Adventure',title:'Mountain Biking',
+    desc:"Nepal's terrain — from ancient Kathmandu Valley trade routes to high-altitude Himalayan trails — makes it a serious mountain biking destination. The Kathmandu Valley rim ride offers a full day of singletrack and valley views close to the city, while the Upper Mustang trail is a multi-day desert-landscape epic through walled villages and canyon roads once used by salt traders. Bikes, helmets, and support vehicles are all arranged as part of guided tours.",
+    facts:{Popular:'Mustang trail, Valley rim ride',Level:'Intermediate to advanced',Season:'Oct–Apr',Includes:'Bike, support vehicle, guide'}},
+  camping:{emoji:'',tag:'Experience',title:'Camping & Wilderness Treks',
+    desc:"For travelers who want to get off the teahouse circuit entirely, camping treks in the remote Khumbu or Upper Mustang regions offer a true off-grid Himalayan experience — sleeping under some of the clearest night skies on earth. These trips are fully supported with tents, a dedicated cooking crew, and porters, allowing access to areas beyond the reach of regular lodges.",
+    facts:{Regions:'Khumbu, Upper Mustang',Support:'Full crew: cook & porters',Season:'Mar–May, Sep–Nov',Best:'Remote, low-traffic routes'}},
+  birdwatching:{emoji:'',tag:'Experience',title:'Birdwatching',
+    desc:"With habitats ranging from the subtropical Terai lowlands to alpine Himalayan meadows, Nepal hosts over 900 recorded bird species in a country roughly the size of Illinois. Chitwan and Koshi Tappu are prime lowland birding sites for species like the Bengal Florican, while the high hills are home to the vividly colored Himalayan Monal (Nepal's national bird) and the elusive Spiny Babbler, found nowhere else in the world.",
+    facts:{Species:'900+ recorded',Endemic:'Spiny Babbler','National Bird':'Himalayan Monal',Season:'Year-round, peak Oct–Mar'}},
+  helicopter:{emoji:'',tag:'Luxury',title:'Helicopter Tours',
+    desc:"Helicopter tours give travelers with limited time a way to experience the high Himalaya in hours rather than weeks. Popular options include an early-morning Everest sunrise flight with a landing at Kala Patthar for photos, an Annapurna shortcut that lands at Jomsom to skip several trekking days, and luxury heli-camping packages that combine scenic flights with an overnight stay at 4,000m.",
+    facts:{Popular:'Everest sunrise flight',Duration:'1–4 hours typical',Landing:'Kala Patthar / Jomsom',Best:'Clear-weather mornings'}},
+  culinary:{emoji:'',tag:'Experience',title:'Culinary & Cooking Tours',
+    desc:"Nepali cuisine reflects the country's cultural diversity, and culinary tours are a hands-on way to explore it — learning to make dal bhat (the everyday staple of lentils, rice, and vegetables), folding momo dumplings, or preparing an elaborate Newari feast with a local family. Street food walking tours through Thamel and the old city of Patan cover everything from sel roti to Newari snacks, and some itineraries include visits to organic farms in the Kathmandu Valley.",
+    facts:{Signature:'Dal bhat, momo, Newari feast',Format:'Hands-on cooking class',Also:'Street food walking tours',Duration:'Half-day typical'}}
+};
+
+function renderModal(data){
+  const hero=document.getElementById('ktModalHero');
+  if(data.img){
+    hero.style.background=data.bg||'var(--mountain)';
+    hero.innerHTML='<button class="kt-modal-close" onclick="closeModal()" aria-label="Close">✕</button><img src="'+data.img+'" alt="'+data.title+'" onerror="this.remove()">';
+  }else{
+    hero.style.background=data.bg||'linear-gradient(135deg,var(--mountain),var(--mountain-light))';
+    hero.innerHTML='<button class="kt-modal-close" onclick="closeModal()" aria-label="Close">✕</button><span style="font-size:4.5rem">'+(data.emoji||'')+'</span>';
+  }
+  document.getElementById('ktModalTag').textContent=data.tag;
+  document.getElementById('ktModalTitle').textContent=data.title;
+  document.getElementById('ktModalDesc').textContent=data.desc;
+  const factsEl=document.getElementById('ktModalFacts');
+  factsEl.innerHTML='';
+  Object.entries(data.facts).forEach(([k,v])=>{
+    const div=document.createElement('div');
+    div.className='kt-modal-fact';
+    div.innerHTML='<h5>'+k+'</h5><p>'+v+'</p>';
+    factsEl.appendChild(div);
+  });
+  document.getElementById('ktModalOverlay').classList.add('show');
+  document.body.classList.add('kt-modal-open');
+}
+
+function openAttraction(key){
+  const data=attractionData[key];
+  if(!data)return;
+  renderModal(data);
+}
+
+function openActivity(key){
+  const data=activityData[key];
+  if(!data)return;
+  renderModal(data);
+}
+
+function closeModal(){
+  document.getElementById('ktModalOverlay').classList.remove('show');
+  document.body.classList.remove('kt-modal-open');
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeModal();
+});
+
+// Smooth scroll offset for fixed nav
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target){e.preventDefault();window.scrollTo({top:target.offsetTop-70,behavior:'smooth'})}
+  });
+});
+
+// Card number formatting
+document.querySelectorAll('input[placeholder*="1234 5678"]').forEach(input=>{
+  input.addEventListener('input',e=>{
+    let v=e.target.value.replace(/\D/g,'').replace(/(.{4})/g,'$1 ').trim();
+    e.target.value=v.substring(0,19);
+  });
+});
+</script>
+</body>
+</html>
